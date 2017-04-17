@@ -3,6 +3,9 @@ package org.academiadecodigo.bootcamp.model;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -12,23 +15,38 @@ import javax.validation.constraints.Size;
  */
 public class User {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
 
     @NotNull(message = "username is mandatory")
     @NotBlank(message = "username is mandatory")
     @Pattern(regexp = "[a-z-A-Z]*", message = "username has invalid characters")
+    @Column(name = "name")
     private String name;
 
     @NotNull
     @NotBlank
     @Size(min=3, max=64)
+    @Column(name = "password")
     private String password;
 
+    @Email
+    @Column(name = "email")
     private String email;
 
     public User() {
 
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

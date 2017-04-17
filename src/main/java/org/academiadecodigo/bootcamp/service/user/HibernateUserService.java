@@ -15,16 +15,16 @@ import java.util.LinkedList;
 public class HibernateUserService implements UserService {
 
     @Override
-    public boolean authenticate(String userName, String password) {
+    public boolean authenticate(String name, String password) {
         boolean isAuthenticated = false;
 
         try {
 
             Session session = HibernateSessionManager.getInstance().beginTransaction();
 
-            Query q = session.createQuery("from User where userName = :userName and password = :password");
+            Query q = session.createQuery("from User where username = '" + name + "' and password = '" + password + "'");
 
-            HibernateSessionManager.getInstance().commitTransaction();
+            //HibernateSessionManager.getInstance().commitTransaction();
 
             if(q.uniqueResult() != null){
                 isAuthenticated = true;
@@ -61,7 +61,7 @@ public class HibernateUserService implements UserService {
     }
 
     @Override
-    public User findByName(String userName) throws SQLException {
+    public User findByName(String name) throws SQLException {
 
         try {
 
@@ -69,10 +69,10 @@ public class HibernateUserService implements UserService {
 
 
 
-            Query q = session.createQuery("from User where userName = :userName ");
+            Query q = session.createQuery("from User where name = '" + name + "'");
 
 
-            HibernateSessionManager.getInstance().commitTransaction();
+            //HibernateSessionManager.getInstance().commitTransaction();
 
             User u = (User) q.uniqueResult();
 

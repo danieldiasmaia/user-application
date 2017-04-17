@@ -2,9 +2,10 @@
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/user_db</property>
+        <property name="connection.url">jdbc:mysql://127.0.0.1:3306/user_db?autoReconnect=true&amp;useSSL=false</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password">sfxaiizr.1</property>
@@ -15,7 +16,7 @@
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
         <!-- DB schema will be updated if needed, do not use in production -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
         <!-- Show generated SQL for debug purposes -->
         <property name="hibernate.show_sql">true</property>
         <!-- Hibernate Mappings -->
