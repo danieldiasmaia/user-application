@@ -5,13 +5,16 @@ import org.academiadecodigo.bootcamp.persistence.HibernateSessionManager;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by dmaia on 16-04-2017.
  */
+@Service
 public class HibernateUserService implements UserService {
 
     @Override
@@ -95,7 +98,32 @@ public class HibernateUserService implements UserService {
     }
 
     @Override
-    public LinkedList<User> findAll() {
+    public List<User> findAll() {
+
+        List<User> users;
+
+        try {
+
+            Session session = HibernateSessionManager.getInstance().beginTransaction();
+
+
+
+            Query q = session.createQuery("from User");
+
+            users = q.list();
+            //HibernateSessionManager.getInstance().commitTransaction();
+
+            //User u = (User) q.uniqueResult();
+
+            return users;
+
+        } catch (HibernateException ex) {
+
+            System.out.println(ex.getMessage());
+            HibernateSessionManager.getInstance().rollbackTransaction();
+
+        }
+
         return null;
     }
 

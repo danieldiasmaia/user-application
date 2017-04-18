@@ -73,12 +73,12 @@ To change this template use File | Settings | File Templates.
                 <th>Delete</th>
             </tr>
             <c:forEach var="user" items="${users}">
-            <tr>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td><form:form action="user/edit/${user.name}" method="get" modelAttribute="user"><button type="submit" class="btn btn-success">Edit</button></form:form></td>
-                <td><form:form action="user/delete/${user.name}" method="get" modelAttribute="user"><button type="submit" class="btn btn-danger">Delete</button></form:form></td>
-            </tr>
+                <tr>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td><form:form action="user/edit/${user.name}" method="get" modelAttribute="user"><button type="submit" class="btn btn-success">Edit</button></form:form></td>
+                    <td><form:form action="user/delete/${user.name}" method="get" modelAttribute="user"><button type="submit" class="btn btn-danger">Delete</button></form:form></td>
+                </tr>
             </c:forEach>
 
         </c:if>

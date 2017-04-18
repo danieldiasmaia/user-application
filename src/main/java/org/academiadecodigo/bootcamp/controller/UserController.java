@@ -3,6 +3,8 @@ package org.academiadecodigo.bootcamp.controller;
 import org.academiadecodigo.bootcamp.model.User;
 import org.academiadecodigo.bootcamp.service.user.HibernateUserService;
 
+import org.academiadecodigo.bootcamp.service.user.MockUserService;
+import org.academiadecodigo.bootcamp.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +22,7 @@ import java.util.LinkedList;
 public class UserController {
 
     @Autowired
-    private HibernateUserService userService;
+    private UserService userService;
 
     private User user;
 
@@ -40,18 +42,13 @@ public class UserController {
             model.addAttribute(Attribute.USER, user);
         }
 
-
+        for(User user : userService.findAll()){
+            System.out.println("*************Id: " + user.getId() + " *** Name: " + user.getName() + " *** Email: " + user.getEmail());
+        }
 
         model.addAttribute(Attribute.USER_LIST, userService.findAll());
         return "users";
     }
-
-    /*
-    @ModelAttribute(method = , value =)
-    public User populateLogin(){
-        return new User();
-    }
-    */
 
     @RequestMapping(method = RequestMethod.POST, value = "/user/add")
     public String addUser(Model model, @ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
@@ -123,8 +120,5 @@ public class UserController {
 
         return "redirect:/";
     }
-
-
-
 
 }

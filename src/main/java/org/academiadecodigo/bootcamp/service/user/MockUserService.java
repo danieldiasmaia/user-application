@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp.service.user;
 
 import org.academiadecodigo.bootcamp.model.User;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by codecadet on 22/06/16.
  */
+@Service
 public class MockUserService implements UserService {
 
     private List<User> users = new LinkedList<User>();

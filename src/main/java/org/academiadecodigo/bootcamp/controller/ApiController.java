@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -27,7 +28,7 @@ public class ApiController {
 
 
     @RequestMapping(method = RequestMethod.GET, value = "api/users", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LinkedList<User>> listUsers(){
+    public ResponseEntity<List<User>> listUsers(){
 
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
 
